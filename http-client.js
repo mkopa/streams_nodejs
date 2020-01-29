@@ -1,4 +1,5 @@
 var http = require("http");
+var fs = require("fs");
 var post = http.request({
     method: "POST",
     host: "localhost",
@@ -8,15 +9,16 @@ var post = http.request({
     console.log(res.statusCode);
     res.pipe(process.stdout);
 });
-post.end("client data\n");
+fs.createReadStream("./data.txt").pipe(post);
+// post.end("client data\n");
 
-var get = http.request({
-    method: "GET",
-    host: "localhost",
-    port: 3000,
-    url: "/"
-}, function (res) {
-    console.log(res.statusCode);
-    res.pipe(process.stdout);
-});
-get.end();
+// var get = http.request({
+//     method: "GET",
+//     host: "localhost",
+//     port: 3000,
+//     url: "/"
+// }, function (res) {
+//     console.log(res.statusCode);
+//     res.pipe(process.stdout);
+// });
+// get.end();

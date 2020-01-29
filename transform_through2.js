@@ -7,6 +7,7 @@ fs.createReadStream("./data.txt")
     .pipe(process.stdout);
 
 function toUpper(buffer, encoding, next) {
-    this.push(null, buffer.toString().toUpperCase());
-    next();
+    // next(null, buffer.toString().toUpperCase());
+    this.push(null, buffer.toString().toUpperCase()); // to the right
+    next(); // from the left
 }
